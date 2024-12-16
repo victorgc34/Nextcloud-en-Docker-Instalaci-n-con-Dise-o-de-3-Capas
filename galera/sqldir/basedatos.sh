@@ -6,7 +6,7 @@
 DB_USER=user_owncloud
 DB_PASS=GHHJHSGDY
 
-IP_MAS=192.168.3.%
+IP_MAS=192.168.7.%
 #Esta debe de coincidir con la variable indicada en el docker-compose
 db_passwd=1234contrasena
 
