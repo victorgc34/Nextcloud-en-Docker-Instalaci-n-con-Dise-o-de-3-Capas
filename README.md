@@ -2,9 +2,9 @@
 
 El objetivo de este proyecto es asegurar una implementación escalable, fácil de mantener y desplegar. **Se basa en una infraestructura de tres capas para proporcionar mayor escalabilidad y seguridad**, separando de manera modular las funcionalidades de cada servicio.
 
-# Indice
+# Índice
 
-1. ¿Como arrancar este proyecto con Docker Compose?
+1. ¿Cómo arrancar este proyecto con Docker Compose?
     1. Configuración inicial
     2. Puesta en marcha
 2. Infraestructura de este proyecto
@@ -28,7 +28,7 @@ Para poder **arrancar** este proyecto, necesitaremos tener instaladas dos herram
 
 Para poder lanzar este contenedor, tendremos ajustar las variables de entorno definidas en el archivo `.env`.
 
-Este contiene la siguiente variables:
+Este contiene la siguientes variables:
 
 - **DB_USER**: esta variable especifica el usuario de la base de datos que Owncloud utilizará para almacenar su información.
 - **DB_PASS**: esta variable especifica la contraseña del usuario $DB_USER de la base de datos.
@@ -95,7 +95,7 @@ En esta capa se encuentran los servidores web que gestionan las solicitudes y el
         - **Subred**: `192.168.3.0/24`
         - **IP**: `192.168.3.4`
         - **Nombre de la máquina**: `serverweb2TuNombre`
-- **PHP-FPM**: En esta máquina, se ejecuta PHP-FPM, el cual es responsable de procesar las solicitudes dinámicas de PHP. En esta infraestructura he obviado el servidor de NFS ya que utilizamos volúmenes de docker para la sincronización de los datos.
+- **PHP-FPM**: En esta máquina, se ejecuta PHP-FPM, el cual es responsable de procesar las solicitudes dinámicas de PHP. En esta infraestructura he obviado el servidor de NFS ya que utilizamos volúmenes de Docker para la sincronización de los datos.
     - **Redes**:
         - **Red**: `red-capa-2`
         - **Subred**: `192.168.3.0/24`
