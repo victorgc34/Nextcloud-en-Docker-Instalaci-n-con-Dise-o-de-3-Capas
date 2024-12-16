@@ -5,17 +5,17 @@ El objetivo de este proyecto es asegurar una implementación escalable, fácil d
 # Índice
 
 1. [¿Cómo arrancar este proyecto con Docker Compose?](#1-cómo-arrancar-este-proyecto-con-docker-compose)
-   1.1. [Configuración inicial](#configuración-inicial)  
-   1.2. [Puesta en marcha](#puesta-en-marcha)
+   1. [Configuración inicial](#configuración-inicial)  
+   2. [Puesta en marcha](#puesta-en-marcha)
 2. [Infraestructura de este proyecto](#2-infraestructura-de-este-proyecto)
-   2.1. [Capa 1: Expuesta a Red “Pública”](#capa-1-expuesta-a-red-pública)  
-   2.2. [Capa 2: BackEnd](#capa-2-backend)  
-   2.3. [Capa 3: Datos](#capa-3-datos)
+   1. [Capa 1: Expuesta a Red “Pública”](#capa-1-expuesta-a-red-pública)  
+   2. [Capa 2: BackEnd](#capa-2-backend)  
+   3. [Capa 3: Datos](#capa-3-datos)
 3. [Explicación detallada de cada contenedor](#3-explicación-detallada-de-cada-contenedor)
-   3.1. [Contenedor de Base de Datos](#contenedor-de-base-de-datos)  
-   3.2. [Contenedor de PHP-FPM](#contenedor-de-php-fpm)  
-   3.3. [Contenedores de NGINX](#contenedores-de-nginx)  
-   3.4. [Contenedor del Balanceador de Cargas](#contenedor-del-balanceador-de-cargas)
+   1. [Contenedor de Base de Datos](#contenedor-de-base-de-datos)  
+   2. [Contenedor de PHP-FPM](#contenedor-de-php-fpm)  
+   3. [Contenedores de NGINX](#contenedores-de-nginx)  
+   4. [Contenedor del Balanceador de Cargas](#contenedor-del-balanceador-de-cargas)
 4. [Conclusión](#4-conclusión)
 
 # 1. ¿Cómo arrancar este proyecto con Docker Compose?
