@@ -30,17 +30,17 @@ Para poder lanzar este contenedor, tendremos ajustar las variables de entorno de
 
 Este contiene la siguiente variables:
 
-- DB_USER: esta variable especifica el usuario de la base de datos que Owncloud utilizará para almacenar su información.
-- DB_PASS: esta variable especifica la contraseña del usuario $DB_USER de la base de datos.
-- DB_NAME: esta especifica el nombre de la base de datos empleada por Owncloud.
-- ADMIN_USER: esta variable se utiliza para definir el usuario de inicio de sesión de Owncloud.
-- ADMIN_PASS: esta variable especifica la contraseña de inicio de sesión del usuario $ADMIN_USER.
-- DOMAIN: esta variable es una de las más importantes ya que definirá el nombre de dominio por el cual nos conectaremos a Owncloud.
-- DB_PASSWD: esta especifica la contraseña del usuario ROOT de la base de datos.
+- **DB_USER**: esta variable especifica el usuario de la base de datos que Owncloud utilizará para almacenar su información.
+- **DB_PASS**: esta variable especifica la contraseña del usuario $DB_USER de la base de datos.
+- **DB_NAME**: esta especifica el nombre de la base de datos empleada por Owncloud.
+- **ADMIN_USER**: esta variable se utiliza para definir el usuario de inicio de sesión de Owncloud.
+- **ADMIN_PASS**: esta variable especifica la contraseña de inicio de sesión del usuario $ADMIN_USER.
+- **DOMAIN**: esta variable es una de las más importantes ya que definirá el nombre de dominio por el cual nos conectaremos a Owncloud.
+- **DB_PASSWD**: esta especifica la contraseña del usuario ROOT de la base de datos.
 
 Todas estas variables tendrán que ser definidas para la correcta ejecución del `docker-compose.yml`.
 
-**Ademas, es necesario que nuestra máquina host sepa que el nombre de dominio (definido en la variable) apunta a nuestra IP local. Esto se puede hacer de dos maneras:**
+**Además, es necesario que nuestra máquina host sepa que el nombre de dominio (definido en la variable) apunta a nuestra IP local. Esto se puede hacer de dos maneras:**
 
 - **Usando un servidor DNS**: Configura un registro A o CNAME que apunte a tu IP.
 - **Modificando el archivo `hosts` local**:
