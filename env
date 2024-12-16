@@ -1,0 +1,14 @@
+#Usuario base de datos
+DB_USER=owncloud_user
+#Contraseña base de datos
+DB_PASS=HdSUrjful90
+#Nombre base de datos
+DB_NAME=owncloud_db
+#User owncloud
+ADMIN_USER=victor15
+#Password Owncloud User
+ADMIN_PASS=983-ewf
+#Nombre de dominio (Si no tenemos )
+DOMAIN=servervg.com
+#Contraseña root base de datos
+DB_PASSWD=pass-root
