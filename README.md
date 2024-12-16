@@ -67,6 +67,8 @@ Este descargará las imágenes necesarias y arrancará los contenedores.
 
 Una vez arrancado y ver la página de Owncloud, tendremos que esperar unos 10 segundos para que la configuración de post-instalación se aplique de manera automática. Tras esto, ya podremos conectarnos con nuestro dominio por el navegador añadiendo [`https://dominio.com`](https://dominio.com) iniciar sesión con el usuario y contraseña definidos en el `.env`.
 
+![Imagen](img/resultado.png)
+
 # 2. Infraestructura de este proyecto
 
 ### **Capa 1: Expuesta a Red “Pública”**
