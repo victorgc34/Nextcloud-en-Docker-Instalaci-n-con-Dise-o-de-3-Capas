@@ -1,0 +1,110 @@
+version: '2'
+services:
+  node1-mariadb:
+    image: hauptmedia/mariadb:10.1
+    hostname: node1-mariadb
+    container_name: node1-mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: 'iamgroot'
+      REPLICATION_PASSWORD: 'iamgroot'
+      GALERA: 'On'
+      NODE_NAME: node1-mariadb
+      CLUSTER_NAME: maria_cluster
+      CLUSTER_ADDRESS: gcomm://
+      TZ : 'Europe/Madrid'
+    ports:
+      - 13306:3306/tcp
+    volumes:
+      - ./sqldir:/docker-entrypoint-initdb.d
+    command:
+      --wait_timeout=28800
+      --character-set-server=utf8
+      --collation-server=utf8_general_ci
+      --max-allowed-packet=512M
+      --net-buffer-length=5048576
+      --skip-name-resolve=On
+      --wsrep-new-cluster
+    stdin_open: true
+    tty: true
+    privileged: true
+    ulimits:
+      nofile:
+        soft: 600000
+        hard: 640000
+    networks:
+      prueba:
+        ipv4_address: 192.168.7.2
+
+  node2-mariadb:
+    image: hauptmedia/mariadb:10.1
+    hostname: node2-mariadb
+    container_name: node2-mariadb
+    links:
+      - node1-mariadb
+    environment:
+      REPLICATION_PASSWORD: 'iamgroot'
+      GALERA: 'On'
+      NODE_NAME: node2-mariadb
+      CLUSTER_NAME: maria_cluster
+      CLUSTER_ADDRESS: gcomm://192.168.7.2
+      TZ : 'Europe/Madrid'
+    ports:
+      - 23306:3306/tcp
+    command:
+      --wait_timeout=28800
+      --character-set-server=utf8
+      --collation-server=utf8_general_ci
+      --max-allowed-packet=512M
+      --net-buffer-length=5048576
+
+    stdin_open: true
+    tty: true
+    privileged: true
+    depends_on:
+      - node1-mariadb
+    ulimits:
+      nofile:
+        soft: 600000
+        hard: 640000
+    networks:
+      prueba:
+        ipv4_address: 192.168.7.3
+
+  node3-mariadb:
+    image: hauptmedia/mariadb:10.1
+    hostname: node3-mariadb
+    container_name: node3-mariadb
+    links:
+      - node1-mariadb
+    environment:
+      REPLICATION_PASSWORD: 'iamgroot'
+      GALERA: 'On'
+      NODE_NAME: node3-mariadb
+      CLUSTER_NAME: maria_cluster
+      CLUSTER_ADDRESS: gcomm://192.168.7.2,192.168.7.3
+      TZ : 'Europe/Madrid'
+    ports:
+      - 33306:3306/tcp
+    command:
+      --wait_timeout=28800
+      --character-set-server=utf8
+      --collation-server=utf8_general_ci
+      --max-allowed-packet=512M
+      --net-buffer-length=5048576
+
+    stdin_open: true
+    tty: true
+    privileged: true
+    depends_on:
+      - node1-mariadb
+      - node2-mariadb
+    networks:
+      prueba:
+        ipv4_address: 192.168.7.4
+
+networks:
+  prueba:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.7.0/24
