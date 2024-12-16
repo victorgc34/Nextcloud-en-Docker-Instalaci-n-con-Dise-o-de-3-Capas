@@ -1,0 +1,104 @@
+services:
+  balanceador:
+    build: 
+      context: balanceador/
+      dockerfile: Dockerfile
+      args:
+        DOMAIN: ${DOMAIN} #Argumento necesarios para las variables
+    container_name: balanceador_server #Nombre del contenedor
+    networks: # Configuracion de las redes
+      red-capa-1:
+        ipv4_address: 192.168.2.2
+      red-capa-2:
+        ipv4_address: 192.168.3.2
+    environment:
+        - DOMAIN=${DOMAIN}
+    env_file:
+      - .env  # Ruta del archivo .env
+    ports:
+      - "443:443"
+    restart: unless-stopped
+    depends_on:
+      - nginx1
+      - nginx2
+
+  nginx1:
+    build:
+      context: nginx1/          # Ruta al directorio donde está el Dockerfile
+      dockerfile: Dockerfile
+    container_name: nginx1_server
+    volumes:
+      - owncloud1:/var/www/owncloud
+    networks:
+      red-capa-2:
+        ipv4_address: 192.168.3.3
+    restart: unless-stopped
+    depends_on:
+      - mariadb
+
+  nginx2:
+    build:
+      context: nginx2/          # Ruta al directorio donde está el Dockerfile
+      dockerfile: Dockerfile
+    container_name: nginx2_server
+    volumes:
+      - owncloud1:/var/www/owncloud
+    networks:
+      red-capa-2:
+       ipv4_address: 192.168.3.4
+    restart: unless-stopped
+    depends_on:
+      - mariadb
+
+  php:
+    build:
+      context: php/          # Ruta al directorio donde está el Dockerfile
+      dockerfile: Dockerfile
+    container_name: php7.4-fpm
+    env_file:
+      - .env  # Ruta del archivo .env
+    volumes:
+      - owncloud1:/var/www/owncloud
+    networks:
+      red-capa-2:
+       ipv4_address: 192.168.3.7
+    depends_on:
+      - nginx1
+      - nginx2
+
+  mariadb:
+    container_name: contenedor_mariadb
+    image: mariadb
+    env_file:
+      - .env  # Ruta del archivo .env
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_PASSWD} # Contraseña del usuario root
+    volumes:
+      - ./database/basedatos.sh:/docker-entrypoint-initdb.d/base.sh # Monta el script al contenedor
+    networks:
+      red-capa-2:
+        ipv4_address: 192.168.3.5
+      red-capa-3:
+        ipv4_address: 192.168.4.2
+    restart: unless-stopped
+
+volumes:
+  owncloud1: 
+    driver: local
+
+networks:
+  red-capa-1:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.2.0/24
+  red-capa-2:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.3.0/24
+  red-capa-3:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.4.0/24
