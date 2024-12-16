@@ -13,7 +13,7 @@ El objetivo de este proyecto es asegurar una implementación escalable, fácil d
    3. [Capa 3: Datos](#capa-3-datos)
 3. [Explicación detallada de cada contenedor](#3-explicación-detallada-de-cada-contenedor)
    1. [Contenedor de Base de Datos](#contenedor-de-base-de-datos)  
-   2. [Contenedor de PHP-FPM](#contenedor-de-php-fpm)  
+   2. [Contenedor de PHP-FPM](#contenedor-php-fpm)  
    3. [Contenedores de NGINX](#contenedores-de-nginx)  
    4. [Contenedor del Balanceador de Cargas](#contenedor-del-balanceador-de-cargas)
 4. [Conclusión](#4-conclusión)
